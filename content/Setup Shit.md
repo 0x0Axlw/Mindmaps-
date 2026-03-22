@@ -210,7 +210,7 @@ GPG → Did you really write this (verification)
 ---
 
 > “Security isn’t extra work. It’s disciplined setup done once.”
->[apps shit]
+>[[apps shit]]
 >[index]
 >[Setup Shit]
 >

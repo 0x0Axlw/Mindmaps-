@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  THEME_NAME: arzaba
+
 permissions:
   contents: read
   pages: write
@@ -17,16 +20,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Important for Quartz 'last modified' dates
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22 # Updated from 20 to 22 to fix EBADENGINE
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
+
+      # 👇 ADD THIS STEP (IMPORTANT)
+      - name: Fetch Quartz Theme
+        run: curl -s -S https://raw.githubusercontent.com/saberzero1/quartz-themes/master/action.sh | bash -s -- $THEME_NAME
 
       - name: Build Quartz
         run: npx quartz build
